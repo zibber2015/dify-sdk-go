@@ -62,7 +62,7 @@ func (api *API) chatMessagesStreamHandle(ctx context.Context, resp *http.Respons
 				}
 				return
 			}
-			fmt.Println("read_line", line)
+			fmt.Println("read_line", string(line))
 
 			if !bytes.HasPrefix(line, []byte("data:")) {
 				continue
