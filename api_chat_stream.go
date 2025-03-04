@@ -10,13 +10,38 @@ import (
 	"net/http"
 )
 
+//type ChatMessageStreamResponse struct {
+//	Event          string `json:"event"`
+//	TaskID         string `json:"task_id"`
+//	ID             string `json:"id"`
+//	Answer         string `json:"answer"`
+//	CreatedAt      int64  `json:"created_at"`
+//	ConversationID string `json:"conversation_id"`
+//}
+
 type ChatMessageStreamResponse struct {
 	Event          string `json:"event"`
-	TaskID         string `json:"task_id"`
-	ID             string `json:"id"`
-	Answer         string `json:"answer"`
-	CreatedAt      int64  `json:"created_at"`
-	ConversationID string `json:"conversation_id"`
+	ConversationId string `json:"conversation_id"`
+	MessageId      string `json:"message_id"`
+	CreatedAt      int    `json:"created_at"`
+	TaskId         string `json:"task_id"`
+	WorkflowRunId  string `json:"workflow_run_id"`
+	Data           struct {
+		Id             string `json:"id"`
+		WorkflowId     string `json:"workflow_id"`
+		SequenceNumber int    `json:"sequence_number"`
+		Inputs         struct {
+			SysQuery          string        `json:"sys.query"`
+			SysFiles          []interface{} `json:"sys.files"`
+			SysConversationId string        `json:"sys.conversation_id"`
+			SysUserId         string        `json:"sys.user_id"`
+			SysDialogueCount  int           `json:"sys.dialogue_count"`
+			SysAppId          string        `json:"sys.app_id"`
+			SysWorkflowId     string        `json:"sys.workflow_id"`
+			SysWorkflowRunId  string        `json:"sys.workflow_run_id"`
+		} `json:"inputs"`
+		CreatedAt int `json:"created_at"`
+	} `json:"data"`
 }
 
 type ChatMessageStreamChannelResponse struct {
